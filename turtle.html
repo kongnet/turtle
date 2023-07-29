@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>canvas</title>
+  </head>
+  <body>
+    <canvas
+      style="border: 1px solid"
+      width="500"
+      height="500"
+      id="canvas"
+    ></canvas>
+    <script type="text/javascript" src="./1px-fix.js"></script>
+    <script type="text/javascript" src="./turtle.js"></script>
+    <script type="text/javascript">
+      //init turtle
+      let t = new Turtle({ debug: false }) //关闭debug打印
+
+      function baseDemo1() {
+        function drwaPolygon(n = 3) {
+          t.fd(2)
+            .rt(360 / n)
+            .repeat(n)
+            .go()
+        }
+        for (let i = 3; i < 10; i++) {
+          t.setxy(-230 + (i - 3) * 8 * (i - 1), 200).go()
+          drwaPolygon(i)
+        }
+      }
+      function baseDemo2() {
+        function drwaPolygon2(n = 3) {
+          t.fd(5)
+            .rt(180 - 180 / n)
+            .repeat(n)
+            .go()
+        }
+        for (let i = 5; i < 18; i += 2) {
+          t.setxy(-200 + (i - 5) * 30, 120).go()
+          drwaPolygon2(i)
+        }
+      }
+      function baseDemo3() {
+        t.home().setxy(-200, 80).go()
+        for (let i = 0; i < 58; i++) {
+          t.fd(i * 0.03).rt(30)
+        }
+        t.go()
+        t.home().setxy(-140, 80).go()
+        for (let i = 0; i < 29; i++) {
+          t.fd(0.1 + i * 0.1).rt(60)
+        }
+        t.go()
+        t.home().setxy(-80, 80).go()
+        for (let i = 0; i < 20; i++) {
+          t.fd(0.25 + i * 0.25).rt(90)
+        }
+        t.go()
+        t.home().setxy(-20, 80).go()
+        for (let i = 0; i < 12; i++) {
+          t.fd(0.5 + i * 0.5).rt(120)
+        }
+        t.go()
+        t.home().setxy(70, 90).go()
+
+        t.fd(1)
+          .rt(120)
+          .repeat(3)
+          .rt(90)
+          .repeat(4)
+          .pu()
+          .bk(2)
+          .pd()
+          .rt(60)
+          .repeat(6)
+          .go()
+
+        t.home().setxy(100, 60).go()
+        for (let m = 16; m > 1; m--) {
+          for (let i = 1; i < 19; i++) {
+            t.fd(1.618 ** m / 6000).rt(5)
+          }
+        }
+
+        t.go()
+        t.home().setxy(210, 80).go()
+
+        t.fd(0.02).rt(2).repeat(90)
+        t.to('t1').fd(0.02).lt(2).repeat(90)
+        t.proc['_mainproc'] = [...t.proc['_mainproc'], ...t.proc['t1']]
+        t.to().rt(90).repeat(4).rt(36).repeat(10).go()
+
+        console.log(t.proc['_mainproc'])
+      }
+      function baseDemo4() {
+        t.home().setxy(-200, -50)
+        let nn = 1
+        for (let i = 0; i < 1000; i++) {
+          t.fd(0.3).rt(i * nn)
+        }
+        t.go()
+
+        t.home().setxy(-120, -50)
+        nn = 7
+        for (let i = 0; i < 1000; i++) {
+          t.fd(0.3).rt(i * nn)
+        }
+        t.go()
+
+        t.home().setxy(0, -50)
+        nn = 19
+        for (let i = 0; i < 1000; i++) {
+          t.fd(0.6).rt(i * nn)
+        }
+        t.go()
+      }
+      function baseDemo5() {
+        t.home().rt(90)
+
+        function kochCurve(lev, size) {
+          if (lev < 1) {
+            t.fd(size)
+            return
+          }
+          kochCurve(lev - 1, size / 3)
+          t.lt(60)
+          kochCurve(lev - 1, size / 3)
+          t.rt(120)
+          kochCurve(lev - 1, size / 3)
+          t.lt(60)
+          kochCurve(lev - 1, size / 3)
+        }
+        for (let i = 0; i < 5; i++) {
+          t.setxy(-240 + i * 100, 10)
+          kochCurve(i, 8)
+          t.go()
+        }
+
+        // t.rt(120).repeat(3).go()
+      }
+      function baseDemo6() {
+        t.home().setxy(140, -90).go()
+        function drawTree(lev, size) {
+          if (lev > 0) {
+            t.fd(size).lt(20)
+            drawTree(lev - 2, size * 0.7)
+            t.rt(40)
+            drawTree(lev - 1, size * 0.9)
+            t.lt(20).pu().bk(size).pd()
+          }
+        }
+        drawTree(14, 2)
+        t.go()
+      }
+      function baseDemo7() {
+        function tree2(size, lev, ang) {
+          if (lev === 0) {
+            return
+          }
+          t.fd(size)
+          tree2(size / 2, lev - 1, ang)
+          t.bk(size).rt(ang).fd(size)
+          tree2(size / 2, lev - 1, ang)
+          t.bk(size).lt(ang).lt(ang).fd(size)
+          tree2(size / 2, lev - 1, ang)
+          t.bk(size).rt(ang)
+        }
+        t.home().setxy(-150, -230)
+        tree2(6, 6, 30)
+        t.home().setxy(-10, -190)
+        tree2(4, 7, 120)
+        t.home().setxy(150, -190)
+        tree2(4, 7, 108)
+        t.go()
+      }
+      baseDemo1() // regular polygon
+      baseDemo2() // regular star polygon
+      baseDemo3() // constant velocity helix + golden spiral
+      baseDemo4() // variable speed helix
+      baseDemo5() // Koch curve
+      baseDemo6() // Fractal Tree
+      baseDemo7() // Sierpinski triangle
+    </script>
+  </body>
+</html>

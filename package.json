@@ -1,0 +1,122 @@
+{
+  "name": "turtle",
+  "version": "0.1.0",
+  "description": "meeko自用函数",
+  "keywords": [
+    "turtle",
+    "js",
+    "logo",
+    "regular polygon",
+    "regular star polygon",
+    "constant velocity helix + golden spiral",
+    "variable speed helix",
+    "Koch curve",
+    "Fractal Tree",
+    "Sierpinski triangle"
+  ],
+  "main": "index.js",
+  "exports": {
+    ".": {
+      "import": "./index.mjs",
+      "require": "./index.js"
+    }
+  },
+  "browser": {
+    "./index.js": "./index.browser.js"
+  },
+  "scripts": {
+    "patch": "git add . && git commit -m:pencil2: && npm version patch && npm publish .",
+    "cz": "conventional-changelog -p atom -i CHANGELOG.md -s -r 0 && git add . && git status && git cz",
+    "push": "npm version patch && npm publish . && git push",
+    "jsdoc": "jsdoc ./README.md --configure  ./jsdoc.config.js",
+    "testlocal": "standard *.js && istanbul cover ./node_modules/mocha/bin/_mocha -- -r co-mocha --reporter spec --timeout 100000 --recursive tests/",
+    "test_new": "nyc mocha --timeout 100000 --recursive tests/",
+    "test": "mocha --recursive tests/",
+    "cjs2mjs": "rollup -c rollup.config.js",
+    "test2": "istanbul cover ./node_modules/mocha/bin/_mocha -- -r co-mocha --reporter mochawesome --timeout 100000 --recursive tests/",
+    "codecov": "nyc mocha --recursive tests/ && cat ./coverage/lcov.info | codecov",
+    "cov": "nyc --reporter html --reporter text npm test",
+    "coveralls": "nyc --reporter=lcov mocha --timeout 100000 --recursive tests/ && cat ./coverage/lcov.info",
+    "gents": "dts-gen -m meeko -o"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/kongnet/meeko.git"
+  },
+  "publishConfig": {
+    "registry": "https://registry.npmjs.org/"
+  },
+  "engines": {
+    "node": ">= 14.0.0"
+  },
+  "author": "Kongnet <9601698@qq.com>",
+  "license": "MIT",
+  "devDependencies": {
+    "cz-jt": "^0.1.11"
+  },
+  "standard": {
+    "globals": [
+      "$",
+      "describe",
+      "it",
+      "define",
+      "db",
+      "performance"
+    ],
+    "ignore": [
+      "/lib/tpl.js",
+      "/lib/Snowflake.js"
+    ]
+  },
+  "eslintConfig": {
+    "plugins": [],
+    "parserOptions": {
+      "ecmaVersion": "latest",
+      "sourceType": "module",
+      "ecmaFeatures": {
+        "experimentalObjectRestSpread": true,
+        "jsx": true,
+        "modules": true
+      }
+    },
+    "env": {
+      "browser": true,
+      "node": true,
+      "es6": true,
+      "mocha": true
+    },
+    "globals": {
+      "angular": true
+    },
+    "rules": {
+      "no-unused-vars": 1,
+      "camelcase": 0,
+      "curly": 2,
+      "brace-style": [
+        2,
+        "1tbs",
+        {
+          "allowSingleLine": true
+        }
+      ],
+      "quotes": [
+        1,
+        "single"
+      ],
+      "semi": 0,
+      "no-extra-semi": 1,
+      "space-infix-ops": 1,
+      "no-console": 0,
+      "complexity": [
+        1,
+        10
+      ]
+    },
+    "extends": "eslint:recommended"
+  },
+  "config": {
+    "commitizen": {
+      "path": "./node_modules/cz-jt"
+    }
+  }
+}
