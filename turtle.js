@@ -1,15 +1,18 @@
 class Turtle {
   constructor (option = {}) {
-    this.debug = option.debug
-    this.nowProcName = '_mainproc'
-    this.mainProcName = '_mainproc'
+    const defOption = {
+      debug: false,
+      nowProcName: '_mainproc',
+      mainProcName: '_mainproc',
+      stepSize: 10,
+      nowX: 0,
+      nowY: 0,
+      nowDir: Math.PI / 2, //初始化角度
+      isPenDown: true
+    }
+    Object.assign(defOption, option)
+    Object.assign(this, defOption)
     this.proc = { [this.nowProcName]: [] }
-    this.nowX = 0
-    this.nowY = 0
-    this.nowDir = Math.PI / 2 //初始化角度
-    this.stepSize = option.stepSize || 10 // 步进比例
-    this.isPenDown = true
-    this.mainRunArr = []
     ctxMove(this.nowX, this.nowY)
   }
   fd (n) {
@@ -21,7 +24,6 @@ class Turtle {
       me.isPenDown ? ctxlineTo(x1, y1) : ctxMoveTo(x1, y1)
       return [x1, y1, dir0]
     }
-    //const func = fn(me.nowX, me.nowY, me.nowDir)
     this.proc[this.nowProcName].push(fn)
     return this
   }
@@ -109,13 +111,18 @@ class Turtle {
     this.proc[this.nowProcName].length = 0
     return this
   }
-
+  add (procName) {
+    if (!this.proc[procName]) return this
+    this.proc[this.nowProcName] = [
+      ...this.proc[this.nowProcName],
+      ...this.proc[procName]
+    ]
+    return this
+  }
   repeat (n = 1) {
     let a = []
     for (let i = 0; i < n; i++) {
-      this.proc[this.nowProcName].map(x => {
-        a.push(x)
-      })
+      a.push(...this.proc[this.nowProcName])
     }
     this.proc[this.nowProcName] = a
     return this
@@ -126,6 +133,6 @@ class Turtle {
     return this
   }
   get list () {
-    console.log(Object.keys(this.proc))
+    return Object.keys(this.proc)
   }
 }

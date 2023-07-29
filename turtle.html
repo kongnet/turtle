@@ -86,12 +86,9 @@
         t.go()
         t.home().setxy(210, 80).go()
 
-        t.fd(0.02).rt(2).repeat(90)
+        t.to('t0').fd(0.02).rt(2).repeat(90) // combine
         t.to('t1').fd(0.02).lt(2).repeat(90)
-        t.proc['_mainproc'] = [...t.proc['_mainproc'], ...t.proc['t1']]
-        t.to().rt(90).repeat(4).rt(36).repeat(10).go()
-
-        console.log(t.proc['_mainproc'])
+        t.to().add('t0').add('t1').rt(90).repeat(4).rt(36).repeat(10).go()
       }
       function baseDemo4() {
         t.home().setxy(-200, -50)
@@ -174,6 +171,7 @@
         tree2(4, 7, 108)
         t.go()
       }
+
       baseDemo1() // regular polygon
       baseDemo2() // regular star polygon
       baseDemo3() // constant velocity helix + golden spiral
