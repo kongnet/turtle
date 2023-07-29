@@ -16,4 +16,4 @@ t.fd(10).rt(90).repeat(4).go() // draw a square
 - baseDemo6 Fractal Tree
 - baseDemo7 Sierpinski triangle
 
-![screenshot](https://github.com/kongnet/turtle/raw/master/screenShot/s1.png)
+![screenshot](https://github.com/kongnet/turtle/blob/main/screenshot/s1.png)
