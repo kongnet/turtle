@@ -27,7 +27,7 @@
   "scripts": {
     "patch": "git add . && git commit -m:pencil2: && npm version patch && npm publish .",
     "cz": "conventional-changelog -p atom -i CHANGELOG.md -s -r 0 && git add . && git status && git cz",
-    "push": "npm version patch && npm publish . && git push",
+    "push": "npm version patch && git push",
     "jsdoc": "jsdoc ./README.md --configure  ./jsdoc.config.js",
     "test": "mocha --recursive tests/",
     "cjs2mjs": "rollup -c rollup.config.js"
