@@ -17,7 +17,7 @@
       //init turtle
       let t = new Turtle({ debug: false }) //关闭debug打印
 
-      function baseDemo1() {
+      function demo1() {
         function drwaPolygon(n = 3) {
           t.fd(2)
             .rt(360 / n)
@@ -29,7 +29,7 @@
           drwaPolygon(i)
         }
       }
-      function baseDemo2() {
+      function demo2() {
         function drwaPolygon2(n = 3) {
           t.fd(5)
             .rt(180 - 180 / n)
@@ -41,7 +41,7 @@
           drwaPolygon2(i)
         }
       }
-      function baseDemo3() {
+      function demo3() {
         t.home().setxy(-200, 80).go()
         for (let i = 0; i < 58; i++) {
           t.fd(i * 0.03).rt(30)
@@ -90,7 +90,7 @@
         t.to('t1').fd(0.02).lt(2).repeat(90)
         t.to().add('t0').add('t1').rt(90).repeat(4).rt(36).repeat(10).go()
       }
-      function baseDemo4() {
+      function demo4() {
         t.home().setxy(-200, -50)
         let nn = 1
         for (let i = 0; i < 1000; i++) {
@@ -112,7 +112,7 @@
         }
         t.go()
       }
-      function baseDemo5() {
+      function demo5() {
         t.home().rt(90)
 
         function kochCurve(lev, size) {
@@ -136,7 +136,7 @@
 
         // t.rt(120).repeat(3).go()
       }
-      function baseDemo6() {
+      function demo6() {
         t.home().setxy(140, -90).go()
         function drawTree(lev, size) {
           if (lev > 0) {
@@ -150,7 +150,7 @@
         drawTree(14, 2)
         t.go()
       }
-      function baseDemo7() {
+      function demo7() {
         function tree2(size, lev, ang) {
           if (lev === 0) {
             return
@@ -172,13 +172,13 @@
         t.go()
       }
 
-      baseDemo1() // regular polygon
-      baseDemo2() // regular star polygon
-      baseDemo3() // constant velocity helix + golden spiral
-      baseDemo4() // variable speed helix
-      baseDemo5() // Koch curve
-      baseDemo6() // Fractal Tree
-      baseDemo7() // Sierpinski triangle
+      demo1() // regular polygon
+      demo2() // regular star polygon
+      demo3() // constant velocity helix + golden spiral
+      demo4() // variable speed helix
+      demo5() // Koch curve
+      demo6() // Fractal Tree
+      demo7() // Sierpinski triangle
     </script>
   </body>
 </html>

@@ -1,7 +1,7 @@
 {
   "name": "turtle",
-  "version": "0.1.0",
-  "description": "meeko自用函数",
+  "version": "0.5.0",
+  "description": "Simulate Turtle Geometry",
   "keywords": [
     "turtle",
     "js",
@@ -29,19 +29,12 @@
     "cz": "conventional-changelog -p atom -i CHANGELOG.md -s -r 0 && git add . && git status && git cz",
     "push": "npm version patch && npm publish . && git push",
     "jsdoc": "jsdoc ./README.md --configure  ./jsdoc.config.js",
-    "testlocal": "standard *.js && istanbul cover ./node_modules/mocha/bin/_mocha -- -r co-mocha --reporter spec --timeout 100000 --recursive tests/",
-    "test_new": "nyc mocha --timeout 100000 --recursive tests/",
     "test": "mocha --recursive tests/",
-    "cjs2mjs": "rollup -c rollup.config.js",
-    "test2": "istanbul cover ./node_modules/mocha/bin/_mocha -- -r co-mocha --reporter mochawesome --timeout 100000 --recursive tests/",
-    "codecov": "nyc mocha --recursive tests/ && cat ./coverage/lcov.info | codecov",
-    "cov": "nyc --reporter html --reporter text npm test",
-    "coveralls": "nyc --reporter=lcov mocha --timeout 100000 --recursive tests/ && cat ./coverage/lcov.info",
-    "gents": "dts-gen -m meeko -o"
+    "cjs2mjs": "rollup -c rollup.config.js"
   },
   "repository": {
     "type": "git",
-    "url": "git://github.com/kongnet/meeko.git"
+    "url": "git://github.com/kongnet/turtle.git"
   },
   "publishConfig": {
     "registry": "https://registry.npmjs.org/"
