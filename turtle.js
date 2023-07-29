@@ -7,7 +7,7 @@ class Turtle {
     this.nowX = 0
     this.nowY = 0
     this.nowDir = Math.PI / 2 //初始化角度
-    this.stepSize = 10 // 步进比例
+    this.stepSize = option.stepSize || 10 // 步进比例
     this.isPenDown = true
     this.mainRunArr = []
     ctxMove(this.nowX, this.nowY)
