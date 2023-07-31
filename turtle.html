@@ -5,8 +5,8 @@
     <title>Turtle</title>
   </head>
   <body>
-    <script type="text/javascript" src="./1px-fix.js"></script>
-    <script type="text/javascript" src="./turtle.js"></script>
+    <script type="text/javascript" src="./js/1px-fix.js"></script>
+    <script type="text/javascript" src="./js/turtle.js"></script>
     <script type="text/javascript">
       //init turtle
       let t = new Turtle({ debug: false, animate: 0 }) //关闭debug打印
@@ -165,7 +165,25 @@
         tree2(4, 7, 108)
         t.go()
       }
-
+      function demo8() {
+        function leaf(size, ang) {
+          if (size < 0.02) {
+            return
+          }
+          t.fd(size).rt(70 * ang)
+          leaf(size / 2, -ang)
+          t.lt(70 * ang)
+            .fd(size)
+            .lt(70 * ang)
+          leaf(size / 2, ang)
+          t.rt(70 * ang).rt(7 * ang)
+          leaf(size - 0.01, ang)
+          t.lt(7 * ang).bk(size * 2)
+        }
+        t.setxy(-220, -230)
+        leaf(0.25, 1)
+        t.go()
+      }
       demo1() // regular polygon
       demo2() // regular star polygon
       demo3() // constant velocity helix + golden spiral
@@ -173,12 +191,7 @@
       demo5() // Koch curve
       demo6() // Fractal Tree
       demo7() // Sierpinski triangle
-
-      // function test1() {
-      //   t.to('t0').fd(0.1).rt(2).repeat(90) // combine
-      //   t.to('t1').fd(0.1).lt(2).repeat(90)
-      //   t.to().add('t0').add('t1').rt(90).repeat(4).rt(36).repeat(10).go()
-      // }
+      demo8() // Leaf
     </script>
   </body>
 </html>

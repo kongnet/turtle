@@ -45,13 +45,15 @@ class Turtle {
       ctxTurtle.stroke()
     }
     this.drawTurtle = drawTurtle
-    let nn = 0
     if (this.animate && this.animate > 0) {
+      let nn = 0
       setInterval(function () {
         nn++
         for (let i = 0; i < me.animate; i++) {
           let task = me.proc['runQueue'].shift()
-          if (!task) return
+          if (!task) {
+            return
+          }
           ;[me.nowX, me.nowY, me.nowDir] = task(me.nowX, me.nowY, me.nowDir)
         }
         nn %= 10000
@@ -177,11 +179,15 @@ class Turtle {
   go () {
     this.run()
     this.proc[this.nowProcName].length = 0
-    this.drawTurtle(this.nowX, this.nowY, this.nowDir)
+    if (this.animate && this.animate > 0) {
+      this.drawTurtle(this.nowX, this.nowY, this.nowDir)
+    }
     return this
   }
   add (procName) {
-    if (!this.proc[procName]) return this
+    if (!this.proc[procName]) {
+      return this
+    }
     this.proc[this.nowProcName] = [
       ...this.proc[this.nowProcName],
       ...this.proc[procName]

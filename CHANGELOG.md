@@ -1,9 +1,4 @@
-## [0.5.2](https://github.com/kongnet/turtle/compare/v0.5.1...v0.5.2) (2023-07-29)
-
-
-
-
-## [0.5.1](https://github.com/kongnet/turtle/compare/5cb256bfb0b2f3998cbac5b00887f05a5b967e7d...v0.5.1) (2023-07-29)
+## 0.5.3 (2023-07-31)
 
 
 ### :art:
@@ -12,6 +7,7 @@
 
 ### :sparkles:
 
+* add animate support & turtle mark ([8b104ea](https://github.com/kongnet/turtle/commit/8b104eaedae31fcf8cd29bff90e97c846286571c))
 * add() combine two proc ([6237f78](https://github.com/kongnet/turtle/commit/6237f787f84f7c085541f7614d9abff2c73efddb))
 
 

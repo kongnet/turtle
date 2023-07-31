@@ -5,11 +5,11 @@
     <title>Turtle</title>
   </head>
   <body>
-    <script type="text/javascript" src="./1px-fix.js"></script>
-    <script type="text/javascript" src="./turtle.js"></script>
+    <script type="text/javascript" src="./js/1px-fix.js"></script>
+    <script type="text/javascript" src="./js/turtle.js"></script>
     <script type="text/javascript">
       //init turtle
-      let t = new Turtle({ debug: false, animate: 2 }) //关闭debug打印
+      let t = new Turtle({ debug: false, animate: 5 }) //关闭debug打印
 
       function demo1() {
         function drwaPolygon(n = 3) {
@@ -165,7 +165,30 @@
         tree2(4, 7, 108)
         t.go()
       }
-
+      function demo8() {
+        function drawLeaf(s, ang) {
+          const min = s / 10
+          const minStep = s / 25
+          function leaf(size, ang) {
+            if (size < min) {
+              return
+            }
+            t.fd(size).rt(70 * ang)
+            leaf(size / 2, -ang)
+            t.lt(70 * ang)
+              .fd(size)
+              .lt(70 * ang)
+            leaf(size / 2, ang)
+            t.rt(70 * ang).rt(7 * ang)
+            leaf(size - minStep, ang)
+            t.lt(7 * ang).bk(size * 2)
+          }
+          t.setxy(-220, -230)
+          leaf(s, ang)
+          t.go()
+        }
+        drawLeaf(0.25, 1)
+      }
       demo1() // regular polygon
       demo2() // regular star polygon
       demo3() // constant velocity helix + golden spiral
@@ -173,6 +196,7 @@
       demo5() // Koch curve
       demo6() // Fractal Tree
       demo7() // Sierpinski triangle
+      demo8() // Leaf
 
       // function test1() {
       //   t.to('t0').fd(0.1).rt(2).repeat(90) // combine

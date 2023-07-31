@@ -32,5 +32,8 @@ console.log(t.list) // ['_mainproc', 't0', 't1']
 - demo5 Koch curve
 - demo6 Fractal Tree
 - demo7 Sierpinski triangle
+- demo8 Leaf
+
+![screenshot](https://github.com/kongnet/turtle/blob/main/screenshot/s1.png)
 
 ![screenshot](https://github.com/kongnet/turtle/blob/main/screenshot/s1.png)
