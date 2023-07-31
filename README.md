@@ -36,4 +36,4 @@ console.log(t.list) // ['_mainproc', 't0', 't1']
 
 ![screenshot](https://github.com/kongnet/turtle/blob/main/screenshot/s1.png)
 
-![screenshot](https://github.com/kongnet/turtle/blob/main/screenshot/s1.png)
+![screenshot](https://github.com/kongnet/turtle/blob/main/screenshot/animate.MP4)
