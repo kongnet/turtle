@@ -2,7 +2,16 @@
 
 > Simulate Turtle Geometry
 
-> Like logo languare fd() bk() rt() lt()
+- fd() forward
+- bk() backward
+- rt() right
+- lt() left
+- pu() penup
+- pd() pendown
+- repeat()
+- setxy() put the turtle at coordinate(x, y)
+- home() bring the turtle at the center
+- cs() clearscreen
 
 > run() vs go(), go() can clear atction queue, run() not
 
