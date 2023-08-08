@@ -55,3 +55,7 @@ t.to().add('t0').add('t1').rt(90).repeat(4).rt(36).repeat(10).go()
 ```
 
 ![Animation](https://j.gifs.com/J8nOnP.gif)
+
+## turtle-maze.html
+
+![Maze](https://github.com/kongnet/turtle/blob/main/screenshot/s2.jpg)
