@@ -54,7 +54,7 @@ t.to('t1').fd(0.1).lt(2).repeat(90)
 t.to().add('t0').add('t1').rt(90).repeat(4).rt(36).repeat(10).go()
 ```
 
-![Animation](https://j.gifs.com/J8nOnP.gif)
+![Animation](https://github.com/kongnet/turtle/blob/main/screenshot/s3.gif)
 
 ## turtle-maze.html
 
