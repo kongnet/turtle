@@ -189,3 +189,21 @@ function demo8 (t) {
   leaf(0.25, 1)
   t.go()
 }
+
+function demo9 (t) {
+  const n = 10 // times of iterate
+  const [len, ang] = [180 / 2 ** n, 90]
+  // Dragon Curve
+  function dragon (n, len, ang) {
+    if (n === 0) {
+      t.fd(-len)
+    } else {
+      dragon(n - 1, len, 90)
+      t.rt(ang)
+      dragon(n - 1, len, -90)
+    }
+  }
+  t.home().setxy(80, -140)
+  dragon(n, len, ang)
+  t.go()
+}
