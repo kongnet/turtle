@@ -1,5 +1,7 @@
 # Turtle
 
+> I enjoy the turtle geometry, so I implemented a simplified version using vanilla JavaScript.
+
 > Simulate Turtle Geometry
 
 - fd() forward
