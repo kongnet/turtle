@@ -110,11 +110,44 @@ class Turtle {
     this.proc[this.nowProcName].push(fn)
     return this
   }
+  color (col = '#000000') {
+    const me = this
+    let fn = function () {
+      me.debug && console.log('设置颜色为', col)
+      ctx.strokeStyle = col
+      ctx.beginPath()
+      return [x0, y0, me.nowDir]
+    }
+    this.proc[this.nowProcName].push(fn)
+    return this
+  }
+  fill (col = '#000000') {
+    const me = this
+    let fn = function () {
+      me.debug && console.log('填充颜色为', col)
+      ctx.fillStyle = col
+      ctx.fill()
+      ctx.beginPath()
+      return [x0, y0, me.nowDir]
+    }
+    this.proc[this.nowProcName].push(fn)
+    return this
+  }
   setxy (x0, y0) {
     const me = this
     let fn = function () {
       me.debug && console.log('移动到', x0, y0)
       ctxMove(x0, y0)
+      return [x0, y0, me.nowDir]
+    }
+    this.proc[this.nowProcName].push(fn)
+    return this
+  }
+  move (x0, y0) {
+    const me = this
+    let fn = function () {
+      me.debug && console.log('移动到', x0, y0)
+      ctxlineTo(x0, y0)
       return [x0, y0, me.nowDir]
     }
     this.proc[this.nowProcName].push(fn)

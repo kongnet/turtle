@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>Turtle First</title>
+    <style>
+      html {
+        font-family: 'Courier New', Courier, monospace;
+      }
+    </style>
+  </head>
+  <body>
+    <script type="text/javascript" src="./js/1px-fix.js"></script>
+    <script type="text/javascript" src="./js/turtle.js"></script>
+    <script type="text/javascript">
+      let t = new Turtle({ debug: false, animate: 100 })
+      function chessBoard(size = 2) {
+        const [deep, light] = ['#fefefe', '#dcdcdc'] //['#fefefe', '#dcdcdc'] //['#77A26D', '#C8C365']
+        for (let i = 0; i < 8; i += 1) {
+          for (let k = 0; k < 8; k += 1) {
+            // if ((i % 2 === 1 && k % 2 === 0) || (k % 2 === 1 && i % 2 === 0)) {
+            if ((i & 1) + (k & 1) === 1) {
+              t.setxy(k * size * 10 - 250, i * size * 10 - 250).go()
+              t.fd(size).rt(90).repeat(4).fill(deep).go()
+            } else {
+              t.setxy(k * size * 10 - 250, i * size * 10 - 250).go()
+              t.fd(size).rt(90).repeat(4).fill(light).go()
+            }
+          }
+        }
+        t.home().color('#ff0000')
+        t.go()
+      }
+      chessBoard(50 / 8)
+      setTimeout(function () {
+        const itemSize = 500 / 8
+        let chessItem = {
+          'black-rook': [
+            [0, 0],
+            [7, 0]
+          ],
+          'black-knight': [
+            [1, 0],
+            [6, 0]
+          ],
+          'black-bishop': [
+            [2, 0],
+            [5, 0]
+          ],
+          'black-queen': [[3, 0]],
+          'black-king': [[4, 0]],
+          'black-pawn': [
+            [0, 1],
+            [1, 1],
+            [2, 1],
+            [3, 1],
+            [4, 1],
+            [5, 1],
+            [6, 1],
+            [7, 1]
+          ],
+          'white-rook': [
+            [0, 7],
+            [7, 7]
+          ],
+          'white-knight': [
+            [1, 7],
+            [6, 7]
+          ],
+          'white-bishop': [
+            [2, 7],
+            [5, 7]
+          ],
+          'white-queen': [[3, 7]],
+          'white-king': [[4, 7]],
+          'white-pawn': [
+            [0, 6],
+            [1, 6],
+            [2, 6],
+            [3, 6],
+            [4, 6],
+            [5, 6],
+            [6, 6],
+            [7, 6]
+          ]
+        }
+        for (let i in chessItem) {
+          let img = new Image()
+          img.onload = function () {
+            chessItem[i].map(x => {
+              ctx.drawImage(img, itemSize * x[0], itemSize * x[1])
+            })
+          }
+          img.src = `./svg/${i}.svg`
+        }
+
+        ctx.fillStyle = '#000000'
+        ctx.font = '10px Courier New'
+        Array.from('abcdefgh12345678').map((x, idx) => {
+          if (idx > 7) {
+            ctx.fillText(x, 2, (7 - idx) * itemSize + 510)
+          } else {
+            ctx.fillText(x, (idx + 1) * itemSize - 8, 498)
+          }
+        })
+      }, 1000)
+    </script>
+  </body>
+</html>

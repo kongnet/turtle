@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>Turtle First</title>
+    <style>
+      html {
+        font-family: 'Courier New', Courier, monospace;
+      }
+      table.gridtable {
+        font-family: verdana, arial, sans-serif;
+        font-size: 11px;
+        color: #333333;
+        border-width: 1px;
+        border-color: #666666;
+        border-collapse: collapse;
+      }
+      table.gridtable td {
+        text-align: left;
+        width: 10px;
+        border-width: 1px;
+        padding: 2px;
+        border-style: solid;
+        border-color: #666666;
+        background-color: #ffffff;
+      }
+    </style>
+  </head>
+  <body>
+    <script type="text/javascript">
+      // 累加累乘斐波那契九九表n皇后
+      function sum() {
+        let n = 0
+        for (let i = 1; i <= 50000; i++) {
+          n += i
+        }
+        document.write(`累加到50000: ${n}<br>`)
+      }
+      function mul() {
+        let n = 1n
+        for (let i = 2n; i <= 50n; i++) {
+          n *= i
+        }
+        document.write(`累乘到50: ${n}<br>`)
+      }
+      function fibonacci(n) {
+        if (n === 0) {
+          return 0
+        } else if (n === 1) {
+          return 1
+        } else {
+          return fibonacci(n - 1) + fibonacci(n - 2)
+        }
+      }
+
+      function fibNoCache() {
+        let d = +new Date()
+        document.write(
+          '硬算Fib(40): ' + fibonacci(40) + ',' + (+new Date() - d) + '<br>'
+        )
+      }
+      function fibonacciMemoized(n, memo = {}) {
+        if (n in memo) {
+          return memo[n]
+        }
+        if (n === 0n) {
+          return 0n
+        } else if (n === 1n) {
+          return 1n
+        }
+        memo[n] =
+          fibonacciMemoized(n - 1n, memo) + fibonacciMemoized(n - 2n, memo)
+        return memo[n]
+      }
+      function fibMemo() {
+        let d = +new Date()
+        document.write(
+          '缓存算Fib(50n): ' +
+            fibonacciMemoized(50n) +
+            ',' +
+            (+new Date() - d) +
+            '<br>'
+        )
+      }
+      function nineTable() {
+        document.write('<br>')
+        document.write('九九表<br>')
+
+        for (let i = 1; i <= 9; i++) {
+          for (let k = i; k <= 9; k++) {
+            let val = k * i
+            document.write(
+              `${i}x${k} = ${val < 10 ? '&nbsp;' + val : val}&nbsp;&nbsp;`
+            )
+          }
+          document.write('<br>')
+        }
+      }
+      function solveNQueens(size = 8) {
+        const solutions = []
+        function backtrack(row, cols = 0, d1 = 0, d2 = 0, board = []) {
+          // 如果已经处理完最后一行，即找到了一种解决方案，将其加入 solutions 数组
+          if (row === size) {
+            solutions.push(board.map(cols => cols.join('</td><td>')))
+            return
+          }
+          for (let col = 0, mask; col < size; col++) {
+            mask = 1 << col // 创建当前列的位掩码
+            if (
+              !(cols & mask) &&
+              !(d1 & (1 << (row + col))) &&
+              !(d2 & (1 << (row - col + size - 1)))
+            ) {
+              board.push(
+                Array(size)
+                  .fill('.')
+                  .fill('Q', col, col + 1)
+              ) // 将皇后放置在棋盘上
+              backtrack(
+                row + 1,
+                cols | mask,
+                d1 | (1 << (row + col)),
+                d2 | (1 << (row - col + size - 1)),
+                board
+              )
+              board.pop()
+            }
+          }
+        }
+
+        backtrack(0)
+
+        return solutions
+      }
+      function printNqueens() {
+        const size = 6
+        document.write(`${size}皇后问题<br>`)
+        solveNQueens(size).map((x, idx) => {
+          document.write(`第${idx + 1}种解法<br>`)
+          document.write(
+            `<table id=t${idx} class="gridtable"><tr><td>${x.join(
+              '</td></tr><tr><td>'
+            )}</td></tr></table>`
+          )
+          document.querySelector(`#t${idx}`).style.width = size * 18 + 'px'
+          document.write('<br>')
+        })
+      }
+
+      sum()
+      mul()
+      fibNoCache()
+      fibMemo()
+      nineTable()
+      printNqueens()
+    </script>
+  </body>
+</html>

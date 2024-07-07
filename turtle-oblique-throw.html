@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>Turtle Blank</title>
+    <style>
+      html {
+        font-family: 'Courier New', Courier, monospace;
+      }
+    </style>
+  </head>
+  <body>
+    <script type="text/javascript" src="./js/1px-fix.js"></script>
+    <script type="text/javascript" src="./js/turtle.js"></script>
+    <script type="text/javascript">
+      //init turtle
+
+      let t = new Turtle({ debug: false, animate: 1 })
+      function lineOfTowPoint(x1, y1, x2, y2) {
+        let k = (y2 - y1) / (x2 - x1)
+        let b = y1 - k * x1
+        return { k, b }
+      }
+      function title() {
+        document.write('&nbsp;Sky draw system [obliqueThrow] <br>')
+        document.write('&nbsp;s0 = v0*t, v1 = g*t s1 = v1*t<br>')
+        document.write('&nbsp;y = kx + b =>  x = -b/k | (y=0)<br>')
+        document.write('&nbsp;v = 90 m/s<br>')
+        document.write('&nbsp;g = 9.8 m/s²<br>')
+        document.write('&nbsp;F(air) = 1/2*C*ρ*SV² N<br>')
+      }
+      function drawAxis() {
+        t.setxy(-250, 0).move(250, 0).setxy(0, 250).move(0, -250).home().go()
+      }
+      function obliqueThrow(ang = Math.PI / 4, v = 90, g = 9.8, dx = -200) {
+        let v0 = v * Math.cos(ang)
+        let v1 = v * Math.sin(ang)
+        let air = 2
+
+        t.home().color('#ff0000')
+        for (let time = 0; time < 10; time += 0.1) {
+          const vAir = time => v1 - air * time
+          const y = time => vAir(time) * time - g * time ** 2
+
+          if (y(time) < 0) {
+            const { k, b } = lineOfTowPoint(
+              (time - 1) * v0 + dx,
+              y(time - 1),
+              time * v0 + dx,
+              y(time)
+            )
+            t.move(-b / k, 0)
+
+            break
+          }
+          t.move(time * v0 + dx, y(time))
+        }
+        t.go()
+
+        t.home().color('#000000')
+        for (let time = 0; time < 10; time += 0.1) {
+          const y = time => v1 * time - g * time ** 2
+
+          if (y(time) < 0) {
+            const { k, b } = lineOfTowPoint(
+              (time - 1) * v0 + dx,
+              y(time - 1),
+              time * v0 + dx,
+              y(time)
+            )
+            t.move(-b / k, 0)
+
+            break
+          }
+          t.move(time * v0 + dx, y(time))
+        }
+        t.go()
+      }
+
+      title()
+      drawAxis()
+
+      for (let m = 3; m < 7; m += 1) {
+        obliqueThrow(Math.PI / m)
+      }
+    </script>
+  </body>
+</html>

@@ -45,12 +45,15 @@ ctxTurtle.lineWidth = 2
 // 下面是坐标变换,将左上(0,0),转移到 250,250
 function ctxMove (x, y, drawCtx = ctx) {
   drawCtx.moveTo(x + dx, dy - y)
+  return ctx
 }
 function ctxlineTo (x, y, drawCtx = ctx) {
   drawCtx.lineTo(x + dx, dy - y)
+  return ctx
 }
 function ctxMoveTo (x, y, drawCtx = ctx) {
   drawCtx.moveTo(x + dx, dy - y)
+  return ctx
 }
 const wait = function (t) {
   return new Promise(resolve => {
