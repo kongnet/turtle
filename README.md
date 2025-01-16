@@ -61,3 +61,7 @@ t.to().add('t0').add('t1').rt(90).repeat(4).rt(36).repeat(10).go()
 ## turtle-maze.html
 
 ![Maze](https://github.com/kongnet/turtle/blob/main/screenshot/s2.jpg)
+
+## Programming Learning Syllabus for Elementary Students
+
+![Maze](https://github.com/kongnet/turtle/blob/main/screenshot/s4.png)

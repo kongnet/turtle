@@ -1,3 +1,12 @@
+## [0.5.12](https://github.com/kongnet/turtle/compare/v0.5.11...v0.5.12) (2024-07-07)
+
+
+### :art:
+
+* add gif ([d5f5739](https://github.com/kongnet/turtle/commit/d5f57398a3c3799f9d667427e35cf2f09ffc6e27))
+
+
+
 ## [0.5.11](https://github.com/kongnet/turtle/compare/v0.5.10...v0.5.11) (2023-08-08)
 
 
